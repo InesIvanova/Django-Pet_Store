@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    {% include './nav.html' %}
+
+    <div class="conatainer">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+        <form  action="{% url 'animals' %}" style="border: 1px solid grey; padding: 10% 5%; margin: 10% 1%">
+        <div class="form-group"><label for="name">Enter name of animal</label>
+            <input class="form-control" type="text" name="name" id="name" placeholder="name of the pet">
+        </div>
+        <div class="form-group">
+            <label for="age">Choose animals between age:</label>
+            <select class="form-control" name="age" id="age">
+                <option value="None">any</option>
+                {% for age_id, age in ages%}
+                <option value="{{age_id}}">{{age}}</option>
+                {% endfor %}
+            </select>
+        </div>
+         <div class="form-group">
+            <label for="color">Choose animal's main color age:</label>
+            <select class="form-control" name="color" id="color">
+                <option value="None">any</option>
+                {% for color_id, color in colors%}
+                <option value="{{color_id}}">{{color}}</option>
+                {% endfor %}
+            </select>
+        </div>
+         <div class="form-group">
+            <label for="color">Choose animal's breed:</label>
+            <select class="form-control" name="breed" id="breed">
+                <option value="None">any</option>
+                {% for breed_id, breed in breeds%}
+                <option value="{{breed_id}}">{{breed}}</option>
+                {% endfor %}
+            </select>
+        </div>
+         <div class="form-group">
+            <label for="color">Choose animal's kind:</label>
+            <select class="form-control" name="kind" id="kind">
+                {% for kind_id, kind in kinds%}
+                <option value="None">any</option>
+                <option value="{{kind_id}}">{{kind}}</option>
+                {% endfor %}
+            </select>
+        </div>
+         <div class="form-group">
+            <label for="price">Enter animal's price:</label>
+             <input name="price" class="form-control" id="price" type="number">
+        </div>
+        <button type="submit" class="btn btn-primary"> Search </button>
+    </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+{% include './nav.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <form method="post" style="border: 1px solid grey; padding: 10% 5%; margin: 5% 0%" enctype="multipart/form-data">
+                {% csrf_token %}
+  <div class="form-group">
+      <img src="{{animal.image.url}}" style="width: 100%" alt="animal pic">
+    <label for="name">Name</label>
+    <input type="text" name="name" value="{{animal.name}}" class="form-control" id="name" placeholder="Enter name">
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input name='age' type="number" value="{{animal.age}}" class="form-control" id="age" placeholder="age">
+  </div>
+  <div class="form-group">
+    <label for="kind">Select kind</label>
+    <select name="kind" class="form-control" id="kind">
+        <option value="{{animal.kind}}">{{kind_str}}</option>
+        {% for kind_id, kind in kinds%}
+        <option value="{{kind_id}}">{{kind}}</option>
+        {% endfor %}
+    </select>
+  </div>
+ <div class="form-group">
+    <label for="breed">Select breed</label>
+    <select name="breed" class="form-control" id="breed">
+         <option value="{{animal.breed}}">{{breed_str}}</option>
+        {% for breed_id, breed in breeds%}
+        <option value="{{breed_id}}">{{breed}}</option>
+        {% endfor %}
+    </select>
+  </div>
+ <div class="form-group">
+    <label for="breed">Select main color</label>
+    <select name="color" class="form-control" id="color">
+        <option value="{{animal.color}}">{{color_str}}</option>
+        {% for color_id, color in colors%}
+        <option value="{{color_id}}">{{color}}</option>
+        {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input name='price' type="number" value="{{animal.price}}" class="form-control" id="price" placeholder="price">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input name="image" value="{{animal.image.url}}" type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+        </div>
+            <div class="col-lg-3"></div>
+    </div>
+</div>
+</body>
+</html>

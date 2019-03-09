@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    {% include './nav.html'%}
+
+    <div class="container">
+        <div class="row" style="border: 1px solid black; padding:10% 2%; margin:5% 0%">
+        <div class="col-lg-6">
+            <img src="{{animal.image.url}}" style="width: 75%; float:right" alt="">
+        </div>
+        <div class="col-lg-6">
+            <div style="padding-left:20%; padding-top:5%" >
+                <h3>Name: {{animal.name}}</h3>
+                <h3>Age: {{animal.age}}</h3>
+                <h3>Kind: {{animal.kind}}</h3>
+                <p>Breed: {{breed}}</p>
+                <p>Color: {{color}}</p>
+                <h5>Price: {{animal.price}}</h5>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <button class="btn btn-success"><a href="">Buy!</a></button>
+                    </div>
+                    {% if user.is_staff %}
+                    <div class="col-lg-3">
+                        <button class="btn btn-primary"><a href="/store/animals/{{animal.id}}/edit/">Edit</a></button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

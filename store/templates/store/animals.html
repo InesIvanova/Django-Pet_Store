@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+{% include './nav.html' %}
+<div class="container">
+    <div class="row">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6">
+        <button style="float:right; margin: 5% 10%"  class="btn btn-success"><a style="color:white" href="/store/animals/add/">Add new animal</a> </button>
+    </div>
+</div>
+<div class="row">
+    {% for animal in animals %}
+    <div class="col-lg-4">
+         <div class="card" style="width: 18rem;">
+             {% if animal.image %}
+            <img src="{{animal.image.url}}" class="card-img-top" alt="picture" style="width: 285px; height: 200px">
+             {% else %}
+             <img src="/media/animals/default.jpg">
+             {% endif %}
+             <div class="card-body">
+                <h5 class="card-title">{{animal.name}}</h5>
+                <a href="/store/animals/{{animal.id}}" class="btn btn-primary">Go see {{animal.name}}'s information</a>
+                 {% if user.is_staff %}
+                 <a href="/store/animals/{{animal.id}}/delete" class="btn btn-danger">Delete {{animal.name}}</a>
+                 {% endif %}
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+
+</body>
+</html>
